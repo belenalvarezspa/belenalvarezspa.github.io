@@ -210,19 +210,21 @@ body .pd-cat h2 .grueso { font: 400 clamp(1.7rem, 3.4vw, 2.3rem)/1.1 var(--fx-fo
 
 @media (prefers-reduced-motion: reduce) { .pd-lista .pd-item { transition: none; } .pd-lista .pd-item:hover { transform: none; } }
 
-/* ---- Presencia de marca: la flor del logo repetida por toda la página (grande y suave, en cada sección, alternando lados y giros) ---- */
+/* ---- Presencia de marca: la flor del logo por toda la página. Trama de flores (dos tamaños, desfasadas) en cada sección + una flor grande por sección ---- */
 .sec:not(.oscuro), .sec.oscuro:not(.cierre), .cierre.oscuro { overflow: clip; }
 .sec > .wrap, .cierre > .wrap { position: relative; z-index: 1; }
-.sec::after, .cierre::after, footer::after { content: ""; position: absolute; pointer-events: none; z-index: 0; width: clamp(280px, 38vw, 520px); aspect-ratio: 1; background: var(--fx-deep); opacity: .075;
+.sec::after, .cierre::after, footer::after { content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 0; background: var(--fx-deep); opacity: .09;
+  -webkit-mask: url("../assets/logo.webp") 0 0 / 190px 190px repeat, url("../assets/logo.webp") 95px 120px / 120px 120px repeat; mask: url("../assets/logo.webp") 0 0 / 190px 190px repeat, url("../assets/logo.webp") 95px 120px / 120px 120px repeat; }
+.sec.oscuro::after { background: var(--fx-pop); opacity: .12; }
+.cierre.oscuro::after { opacity: .13; }
+.sec > .wrap::after, .cierre > .wrap::after { content: ""; position: absolute; pointer-events: none; z-index: -1; width: clamp(300px, 42vw, 560px); aspect-ratio: 1; background: var(--fx-deep); opacity: .16;
   -webkit-mask: url("../assets/logo.webp") center / contain no-repeat; mask: url("../assets/logo.webp") center / contain no-repeat; }
-.sec.oscuro::after { background: var(--fx-pop); opacity: .1; }
-.cierre.oscuro::after { opacity: .11; }
-.sec:nth-of-type(odd)::after { left: -110px; top: -90px; transform: rotate(-18deg); }
-.sec:nth-of-type(even)::after { right: -110px; top: 20%; transform: rotate(24deg); }
-.sec:nth-of-type(3n)::after { width: clamp(220px, 28vw, 380px); right: auto; left: 4%; top: auto; bottom: -120px; transform: rotate(110deg); }
-.cierre::after { left: 50%; top: 50%; width: min(620px, 90vw); margin: calc(min(620px, 90vw) / -2) 0 0 calc(min(620px, 90vw) / -2); transform: none; }
+.sec.oscuro > .wrap::after { background: var(--fx-pop); opacity: .2; }
+.sec:nth-of-type(odd) > .wrap::after { left: -150px; top: -60px; transform: rotate(-18deg); }
+.sec:nth-of-type(even) > .wrap::after { right: -150px; bottom: -70px; transform: rotate(24deg); }
+.cierre > .wrap::after { left: 50%; top: 50%; margin: -280px 0 0 -280px; transform: none; }
 footer { position: relative; overflow: clip; }
 footer > * { position: relative; z-index: 1; }
-footer::after { right: -60px; bottom: -120px; width: 320px; transform: rotate(-30deg); opacity: .08; }
-@media (max-width: 700px) { .sec::after { opacity: .09; } .sec.oscuro::after { opacity: .12; } }
+footer::after { opacity: .1; }
+@media (max-width: 700px) { .sec::after { -webkit-mask-size: 130px 130px, 84px 84px; mask-size: 130px 130px, 84px 84px; -webkit-mask-position: 0 0, 65px 80px; mask-position: 0 0, 65px 80px; } .sec > .wrap::after { width: 300px; } }
 @media (prefers-reduced-motion: reduce) { .hero.oscuro .wrap::before { animation: none; } }

@@ -1,0 +1,11 @@
+/* efectos/material.css · complemento OPCIONAL: texturas y materiales. ESTÁTICOS (no se animan), por eso no aplican la regla de solo transform/opacity.
+   .fx-vidrio: panel de vidrio esmerilado (backdrop-filter). Ponerlo sobre una foto o un fondo con color; sin soporte queda un panel sólido.
+   .fx-grano: capa de ruido muy suave encima del fondo de la sección (--fx-grano = intensidad, por defecto .07). Un mosaico SVG diminuto, sin imagen pesada.
+   Cuidado con el rendimiento en celulares: pocos paneles de vidrio por pantalla. */
+.fx-vidrio { background: var(--fx-paper); border: 1px solid color-mix(in srgb, var(--fx-bg) 45%, transparent); box-shadow: 0 8px 30px color-mix(in srgb, var(--fx-ink) 14%, transparent); }
+@supports (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px)) {
+  .fx-vidrio { background: color-mix(in srgb, var(--fx-paper) 55%, transparent); -webkit-backdrop-filter: blur(14px) saturate(1.2); backdrop-filter: blur(14px) saturate(1.2); }
+}
+.fx-grano { position: relative; isolation: isolate; }
+.fx-grano::after { content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none; opacity: var(--fx-grano, .07);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }

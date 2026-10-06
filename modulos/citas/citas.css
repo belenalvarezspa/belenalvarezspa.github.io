@@ -1,0 +1,110 @@
+/* citas.css · piezas de pantalla del módulo de citas (reserva en la landing, Mis citas, panel del personal).
+   Solo variables --fx-* de la marca (+ 3 colores de estado). Suaves y redondeadas para calma; móvil primero: nada depende de :hover. Prefijo ci-. */
+:root { --ci-ok: #1c6b47; --ci-warn: #8a5a00; --ci-err: #a4372b; --ci-r: 18px; --ci-borde: color-mix(in srgb, var(--fx-ink) 16%, transparent); }
+.ci-oculto { display: none !important; }
+.ci-lector { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* avisos */
+#ci-avisos { position: fixed; left: 50%; bottom: calc(24px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); z-index: 90; display: grid; gap: 8px; width: min(440px, 100% - 28px); pointer-events: none; }
+.ci-aviso { background: var(--fx-deep); color: var(--fx-bg); padding: 13px 18px; border-radius: 40px; font: 600 1rem/1.3 var(--fx-font-txt); box-shadow: 0 10px 30px rgba(0,0,0,.25); animation: ci-entra .25s var(--fx-ease) both; text-align: center; }
+.ci-aviso.err { background: var(--ci-err); }
+.ci-aviso.sale { opacity: 0; transform: translateY(8px); transition: opacity .25s, transform .25s; }
+@keyframes ci-entra { from { opacity: 0; transform: translateY(10px); } }
+
+/* formularios y botones */
+.ci-campo { display: grid; gap: 6px; margin-bottom: 14px; font: 600 .92rem var(--fx-font-txt); }
+.ci-campo input, .ci-campo select, .ci-campo textarea { font: 400 1.05rem var(--fx-font-txt); min-height: 50px; padding: 10px 16px; border: 1px solid var(--ci-borde); border-radius: 14px; background: var(--fx-bg); color: var(--fx-ink); width: 100%; }
+.ci-campo input:focus-visible, .ci-campo select:focus-visible, .ci-campo textarea:focus-visible, .ci-btn:focus-visible, .ci-dia:focus-visible, .ci-hora:focus-visible { outline: 3px solid var(--fx-aur-3, var(--fx-deep)); outline-offset: 2px; }
+.ci-campo small { font-weight: 400; opacity: .75; }
+.ci-err { color: var(--ci-err); font: 600 1rem/1.3 var(--fx-font-txt); min-height: 1.3em; margin: 0 0 8px; }
+.ci-btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 50px; padding: 0 24px; border: 0; border-radius: 40px; background: var(--fx-deep); color: var(--fx-bg); font: 600 1rem/1 var(--fx-font-txt); cursor: pointer; text-decoration: none; transition: transform .2s var(--fx-ease); }
+.ci-btn:active:not(:disabled) { transform: scale(.97); }
+.ci-btn:disabled { opacity: .5; cursor: default; }
+.ci-btn.linea { background: transparent; color: inherit; box-shadow: inset 0 0 0 1.5px currentColor; }
+.ci-btn.peq { min-height: 44px; padding: 0 16px; font-size: .92rem; }
+.ci-btn.rojo { background: transparent; color: var(--ci-err); box-shadow: inset 0 0 0 1.5px var(--ci-err); }
+.ci-enlace { background: none; border: 0; padding: 0; min-height: 44px; font: 600 1rem var(--fx-font-txt); text-decoration: underline; text-underline-offset: 3px; color: inherit; cursor: pointer; }
+
+/* tarjetas, chips, filas */
+.ci-card { background: var(--fx-paper); border: 1px solid var(--ci-borde); border-radius: 24px; padding: clamp(18px, 3vw, 28px); }
+.ci-card + .ci-card { margin-top: 16px; }
+.ci-card h3 { font: 400 1.6rem/1.1 var(--fx-font-disp); margin-bottom: 12px; }
+.ci-chip { display: inline-flex; align-items: center; font: 600 .74rem/1 var(--fx-font-txt); text-transform: uppercase; letter-spacing: .07em; padding: 6px 10px; border-radius: 99px; background: var(--fx-deep); color: var(--fx-bg); }
+.ci-chip.ok { background: var(--ci-ok); color: #fff; } .ci-chip.aviso { background: var(--ci-warn); color: #fff; }
+.ci-chip.suave { background: transparent; box-shadow: inset 0 0 0 1.5px currentColor; color: inherit; }
+.ci-vacio { padding: 26px 12px; text-align: center; opacity: .7; }
+.ci-fila { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 14px; padding: 14px 0; border-bottom: 1px solid var(--ci-borde); }
+.ci-fila:last-child { border-bottom: 0; }
+.ci-fila b { font: 600 1.05rem/1.2 var(--fx-font-txt); }
+.ci-fila small { display: block; font: 400 .92rem/1.35 var(--fx-font-txt); opacity: .78; margin-top: 2px; }
+.ci-fila .der { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+
+/* reserva: servicio → día → hora → datos */
+.ci-res { display: grid; gap: 22px; margin-top: 30px; }
+.ci-paso { background: var(--fx-paper); border: 1px solid var(--ci-borde); border-radius: 28px; padding: clamp(18px, 3vw, 30px); }
+.ci-paso > h3 { font: 400 1.6rem/1.1 var(--fx-font-disp); margin-bottom: 4px; display: flex; gap: 12px; align-items: center; }
+.ci-paso > h3 .n { width: 34px; height: 34px; border-radius: 50%; background: var(--fx-deep); color: var(--fx-bg); font: 600 .9rem/34px var(--fx-font-txt); text-align: center; flex-shrink: 0; }
+.ci-paso > p { opacity: .75; margin-bottom: 14px; }
+.ci-paso.apagado { opacity: .45; pointer-events: none; }
+.ci-servs { display: grid; gap: 10px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); }
+.ci-serv { text-align: left; padding: 14px 18px; border-radius: 20px; border: 1px solid var(--ci-borde); background: var(--fx-bg); color: var(--fx-ink); cursor: pointer; font: 400 .95rem/1.35 var(--fx-font-txt); display: grid; gap: 4px; transition: transform .2s var(--fx-ease), box-shadow .2s; }
+.ci-serv b { font: 400 1.25rem/1.15 var(--fx-font-disp); }
+.ci-serv .meta { display: flex; justify-content: space-between; gap: 8px; font-weight: 600; font-size: .88rem; opacity: .8; }
+.ci-serv[aria-pressed="true"] { background: var(--fx-deep); color: var(--fx-bg); border-color: var(--fx-deep); }
+.ci-cat { font: 600 .74rem var(--fx-font-txt); text-transform: uppercase; letter-spacing: .1em; opacity: .65; margin: 14px 0 8px; }
+.ci-cat:first-child { margin-top: 0; }
+.ci-dias { display: flex; gap: 8px; overflow-x: auto; padding: 4px 2px 10px; scrollbar-width: thin; scroll-snap-type: x proximity; }
+.ci-dia { flex: 0 0 auto; width: 74px; min-height: 84px; display: grid; place-items: center; align-content: center; gap: 2px; border-radius: 22px; border: 1px solid var(--ci-borde); background: var(--fx-bg); color: var(--fx-ink); cursor: pointer; font: 600 .78rem var(--fx-font-txt); text-transform: uppercase; letter-spacing: .06em; scroll-snap-align: start; }
+.ci-dia b { font: 400 1.7rem/1 var(--fx-font-disp); text-transform: none; letter-spacing: 0; }
+.ci-dia small { font: 400 .7rem var(--fx-font-txt); text-transform: none; letter-spacing: 0; opacity: .75; }
+.ci-dia[aria-pressed="true"] { background: var(--fx-deep); color: var(--fx-bg); border-color: var(--fx-deep); }
+.ci-dia:disabled { opacity: .38; cursor: default; }
+.ci-navdias { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-bottom: 6px; font: 600 .95rem var(--fx-font-txt); }
+.ci-horas { display: grid; gap: 8px; grid-template-columns: repeat(auto-fill, minmax(86px, 1fr)); }
+.ci-hora { min-height: 48px; border-radius: 40px; border: 1px solid var(--ci-borde); background: var(--fx-bg); color: var(--fx-ink); font: 600 1rem var(--fx-font-txt); cursor: pointer; font-variant-numeric: tabular-nums; }
+.ci-hora[aria-pressed="true"] { background: var(--fx-deep); color: var(--fx-bg); border-color: var(--fx-deep); }
+.ci-hora:disabled { opacity: .35; text-decoration: line-through; cursor: default; }
+.ci-resumen { background: var(--fx-deep); color: var(--fx-bg); border-radius: 22px; padding: 16px 20px; margin-bottom: 16px; }
+.ci-resumen b { font: 400 1.4rem/1.15 var(--fx-font-disp); display: block; }
+.ci-listo { text-align: center; display: grid; gap: 12px; justify-items: center; padding: 10px; }
+.ci-check { width: 74px; height: 74px; } .ci-check circle { stroke: var(--ci-ok); } .ci-check path { stroke: var(--ci-ok); stroke-dasharray: 40; stroke-dashoffset: 40; animation: ci-dibuja .6s .25s var(--fx-ease) forwards; }
+.ci-check circle, .ci-check path { fill: none; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+@keyframes ci-dibuja { to { stroke-dashoffset: 0; } }
+
+/* mis citas y panel */
+.ci-app { width: min(960px, 100% - 28px); margin-inline: auto; }
+.ci-entrada { display: grid; gap: 18px; width: min(460px, 100% - 28px); margin: 34px auto; }
+.ci-pista { background: color-mix(in srgb, var(--fx-accent) 55%, var(--fx-bg)); border-radius: 18px; padding: 14px 16px; font: 400 .98rem/1.4 var(--fx-font-txt); }
+.ci-roles { display: grid; gap: 10px; }
+.ci-roles button { text-align: left; min-height: 64px; padding: 12px 18px; border: 1px solid var(--ci-borde); border-radius: 20px; background: var(--fx-bg); color: var(--fx-ink); cursor: pointer; font: 400 .95rem/1.3 var(--fx-font-txt); }
+.ci-roles button b { display: block; font: 400 1.3rem/1.1 var(--fx-font-disp); }
+.ci-pestanas { position: sticky; top: 70px; z-index: 20; display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; padding: 10px 14px; background: color-mix(in srgb, var(--fx-bg) 94%, transparent); border-bottom: 1px solid var(--ci-borde); }
+.ci-pestanas::-webkit-scrollbar { display: none; }
+.ci-pestanas button { flex: 0 0 auto; min-height: 44px; padding: 0 18px; border: 0; border-radius: 40px; background: transparent; color: var(--fx-ink); font: 600 .95rem var(--fx-font-txt); cursor: pointer; display: inline-flex; gap: 8px; align-items: center; }
+.ci-pestanas button[aria-selected="true"] { background: var(--fx-deep); color: var(--fx-bg); }
+.ci-punto { min-width: 20px; height: 20px; padding: 0 6px; border-radius: 10px; background: var(--ci-err); color: #fff; font: 600 .74rem/20px var(--fx-font-txt); text-align: center; }
+.ci-panel { padding-block: 22px 44px; } .ci-panel[hidden] { display: none; }
+.ci-kpis { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 150px), 1fr)); margin-bottom: 18px; }
+.ci-kpi { background: var(--fx-paper); border: 1px solid var(--ci-borde); border-radius: 22px; padding: 16px 18px; }
+.ci-kpi small { font: 600 .85rem var(--fx-font-txt); display: block; opacity: .75; }
+.ci-kpi b { display: block; font: 400 clamp(2.2rem, 7vw, 3rem)/1 var(--fx-font-disp); margin-top: 4px; font-variant-numeric: tabular-nums; }
+.ci-rejilla { display: grid; gap: 18px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); align-items: start; }
+.ci-barra { display: grid; grid-template-columns: minmax(0, 150px) 1fr auto; gap: 10px; align-items: center; font: 400 .98rem var(--fx-font-txt); margin: 8px 0; }
+.ci-barra .p { height: 12px; border-radius: 99px; background: color-mix(in srgb, var(--fx-deep) 10%, transparent); overflow: hidden; }
+.ci-barra .p div { height: 100%; background: var(--fx-deep); border-radius: 99px; transform-origin: left; animation: ci-crece .5s var(--fx-ease) both; }
+@keyframes ci-crece { from { transform: scaleX(0); } }
+.ci-semana { display: flex; gap: 8px; align-items: flex-end; height: 130px; }
+.ci-semana div { flex: 1; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; gap: 4px; height: 100%; font: 600 .78rem var(--fx-font-txt); }
+.ci-semana i { display: block; width: 100%; background: var(--fx-deep); border-radius: 8px 8px 3px 3px; min-height: 3px; transform-origin: bottom; animation: ci-sube .5s var(--fx-ease) both; }
+@keyframes ci-sube { from { transform: scaleY(0); } }
+.ci-msg { background: var(--fx-bg); border: 1px dashed var(--ci-borde); border-radius: 16px; padding: 12px 14px; font: 400 .95rem/1.45 var(--fx-font-txt); white-space: pre-line; margin: 10px 0; }
+.ci-codigo { font: 600 1.7rem/1 var(--fx-font-txt); letter-spacing: .12em; }
+dialog.ci-dlg { border: 0; border-radius: 28px; padding: 24px; width: min(480px, 100% - 28px); max-height: 90vh; background: var(--fx-bg); color: var(--fx-ink); box-shadow: 0 24px 70px rgba(0,0,0,.35); }
+dialog.ci-dlg::backdrop { background: rgba(0,0,0,.55); }
+dialog.ci-dlg h2 { font: 400 1.8rem/1.1 var(--fx-font-disp); margin-bottom: 14px; }
+.ci-dlg-acc { display: flex; flex-wrap: wrap; gap: 10px; justify-content: flex-end; margin-top: 8px; }
+.ci-semanal { display: grid; grid-template-columns: 70px 1fr 1fr; gap: 8px; align-items: center; margin-bottom: 8px; }
+.ci-semanal input { min-height: 44px; border: 1px solid var(--ci-borde); border-radius: 12px; padding: 0 10px; font: 400 1rem var(--fx-font-txt); background: var(--fx-bg); color: var(--fx-ink); width: 100%; }
+@media (prefers-reduced-motion: reduce) { .ci-aviso, .ci-barra .p div, .ci-semana i, .ci-check path { animation: none; stroke-dashoffset: 0; } .ci-btn, .ci-serv { transition: none; } }
+@media print { .ci-pestanas { display: none; } }
+.ci-cab-acc { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-top: 18px; }

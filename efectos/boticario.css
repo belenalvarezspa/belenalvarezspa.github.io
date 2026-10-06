@@ -1,0 +1,211 @@
+/* efectos/boticario.css · complemento OPCIONAL de estilo "diario de boticario" (se elige con efectos.usar = ["boticario"]). Se carga después de calma.css.
+   Referencia: DESIGN.md de Daniel (Function): papel crema, titulares serif con una palabra en cursiva, botones píldora, tarjetas de 24 px,
+   elevación por escalones de color y no por sombras. NO copia su logo, textos ni fotos, ni su terracota: el acento es el de la marca del cliente.
+   Más un degradado granulado (cian / azul / violeta) que solo entra en el hero y el cierre; sale de la captura de referencia de Daniel.
+   Fuentes sugeridas (marca.fuentes_href): Newsreader (serif, con cursiva) + Inter. Los colores salen de variables --fx-*; el degradado usa --fx-aur-1/2/3.
+   Todo es estático: el grano y el degradado no se animan (excepción de texturas del CLAUDE.md §6). Sin animaciones infinitas nuevas. */
+:root {
+  --fx-dur: .8s; --fx-ease: cubic-bezier(.2, .7, .2, 1); --fx-dist: 22px; --fx-fast: .35s;
+  --fx-rv-dur: 800; --fx-rv-step: 100; --fx-rv-ease: cubic-bezier(.2, .7, .2, 1); --fx-rv-dist: 22px; --fx-rv-scale: 1;
+  --fx-taupe: color-mix(in srgb, var(--fx-ink) 18%, var(--fx-bg));
+  --fx-aur-1: #f1ead0; --fx-aur-2: #a9cdb4; --fx-aur-3: #5e9a7f; /* crema, menta y salvia: la forma del degradado sale de la captura de Daniel, los colores de la marca */
+}
+body { letter-spacing: -.023em; }
+h1, h2, h3, .doble, .marca b, .btn { letter-spacing: normal; }
+
+/* Titulares: serif en romana y una parte en cursiva fina. Se escribe: span = parte en cursiva, resto = romana */
+.doble, body .hero h1 { font-family: var(--fx-font-disp); font-weight: 400; text-transform: none; line-height: 1.08; }
+.doble { font-size: clamp(2.1rem, 5.2vw, 3.4rem); }
+.doble span { display: inline; font-style: italic; font-weight: 300; font-size: 1em; line-height: inherit; margin: 0; letter-spacing: normal; }
+.doble span::after { content: " "; }
+body .hero h1 { line-height: 1; }
+body .hero h1 .fino { font: italic 300 clamp(2.2rem, 5.4vw, 3.6rem)/1.05 var(--fx-font-disp); text-transform: none; }
+body .hero h1 .grueso { font: 400 clamp(3.2rem, 9.6vw, 6.2rem)/.98 var(--fx-font-disp); text-transform: none; letter-spacing: -.01em; }
+.hero .lead { font-weight: 300; }
+
+/* Etiqueta pequeña sobre el titular (ej. número de paso) */
+.paso b, .prog span, .reco small, .pd-info .pd-lema { font-family: var(--fx-font-txt); font-weight: 600; font-size: .78rem; letter-spacing: .08em; text-transform: uppercase; }
+.paso h3, .caja h3, .chat h3 { text-transform: none; font-family: var(--fx-font-disp); font-weight: 400; letter-spacing: normal; }
+.paso h3 { font-size: 1.7rem; }
+.caja h3 { font-size: clamp(1.7rem, 3.6vw, 2.2rem); line-height: 1.1; }
+.caja-cab b, .reco b { text-transform: none; font-family: var(--fx-font-disp); font-weight: 400; letter-spacing: normal; }
+.reco b { font-size: clamp(1.9rem, 4.4vw, 2.5rem); line-height: 1.05; }
+.reco .precio, .pd-precio { font-family: var(--fx-font-disp); font-weight: 400; }
+
+/* Botones píldora, sin borde ni sombra. Oscuro sobre papel; claro sobre fondo oscuro */
+.btn { min-height: 50px; padding: 0 26px; border: 0; border-radius: 40px; background: var(--fx-deep); color: var(--fx-bg); font: 600 1rem/1 var(--fx-font-txt); box-shadow: none; }
+.btn:active { transform: scale(.98); }
+.btn-linea { background: transparent; color: var(--fx-deep); box-shadow: inset 0 0 0 1.5px var(--fx-deep); }
+.oscuro .btn { background: var(--fx-pop); color: var(--fx-deep); }
+.oscuro .btn-linea { background: transparent; color: var(--fx-bg); box-shadow: inset 0 0 0 1.5px var(--fx-pop); }
+body .pd-btn { border-radius: 40px; font-weight: 600; letter-spacing: normal; box-shadow: none; }
+body .pd-btn:active { transform: scale(.98); }
+
+/* Barra y cabecera: papel con filete color taupe (sin franjas oscuras pesadas) */
+.cabecera { background: color-mix(in srgb, var(--fx-bg) 94%, transparent); border-bottom: 1px solid var(--fx-taupe); }
+.cabecera .marca, .cabecera nav a { color: var(--fx-ink); }
+.marca img { border-radius: 0; }
+.marca b { font: 400 1.5rem/1 var(--fx-font-disp); }
+.marca small { color: var(--fx-ink); opacity: .65; text-transform: uppercase; letter-spacing: .1em; font-size: .68rem; }
+.cabecera nav a { font: 400 .98rem/1 var(--fx-font-txt); border-radius: 40px; }
+.barra { background: var(--fx-deep); }
+.barra a { border-radius: 40px; font: 600 .9rem/1 var(--fx-font-txt); }
+.ico { border-width: 1.5px; }
+.ico svg, .barra svg { stroke-width: 1.5; }
+
+/* Tarjetas de 24 px sobre papel envejecido: elevación por color, sin sombra dura */
+.caja, .chat, .hero-foto, .galeria figure { border-radius: 24px; box-shadow: none; }
+.caja { background: var(--fx-paper); border: 1px solid var(--fx-taupe); }
+.caja-cab { border-bottom: 1px solid var(--fx-taupe); }
+.op { border: 1px solid var(--fx-taupe); border-radius: 20px; background: var(--fx-bg); box-shadow: none; font-weight: 600; }
+.op:active { transform: scale(.985); box-shadow: none; }
+.prog .pista div { background: var(--fx-deep); }
+.reco { border-radius: 24px; }
+.chat { background: var(--fx-paper); border: 1px solid var(--fx-taupe); }
+.chat.despues { background: var(--fx-deep); border-color: var(--fx-deep); }
+.burbuja { border-radius: 18px; }
+.galeria figure { border: 0; transform: none !important; }
+.hero-foto { box-shadow: 12px 32px 80px 0 color-mix(in srgb, var(--fx-ink) 18%, transparent); }
+.donde > .oscuro { border: 0 !important; border-radius: 24px !important; box-shadow: none !important; }
+.pd-cat h2 { font-family: var(--fx-font-disp); font-weight: 400; text-transform: none; }
+.pd-lista .pd-item { border: 1px solid var(--fx-taupe); border-radius: 24px; background: var(--fx-paper); box-shadow: none; }
+@media (hover: hover) { .pd-lista .pd-item:hover { transform: translateY(-3px); } }
+
+/* Degradado granulado (hero y cierre; también .fx-aurora en cualquier sección). Estático.
+   Capas: círculos concéntricos crema→menta sobre un fondo salvia + puntos de grano en verde. Texto oscuro encima. */
+.hero.oscuro, .cierre.oscuro, .fx-aurora {
+  position: relative; isolation: isolate; overflow: hidden; color: var(--fx-ink);
+  background:
+    radial-gradient(circle at 76% 56%, var(--fx-aur-1) 0 14%, var(--fx-aur-2) 34%, transparent 62%),
+    radial-gradient(circle at 10% 30%, var(--fx-aur-3) 0 8%, transparent 46%),
+    linear-gradient(150deg, #d3e6d6, var(--fx-aur-2) 55%, var(--fx-aur-3));
+}
+.hero.oscuro::before, .cierre.oscuro::before, .fx-aurora::before { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; opacity: .18;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='g' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.95' numOctaves='1' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0  0 0 0 0 .29  0 0 0 0 .21  9 0 0 0 -4.6'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E"); }
+.hero.oscuro .wrap, .cierre.oscuro .wrap, .fx-aurora > * { position: relative; z-index: 1; }
+.hero.oscuro .lead { color: color-mix(in srgb, var(--fx-ink) 85%, transparent); }
+.hero.oscuro .btn, .cierre.oscuro .btn { background: var(--fx-deep); color: var(--fx-bg); }
+.hero.oscuro .btn-linea, .cierre.oscuro .btn-linea { background: transparent; color: var(--fx-deep); box-shadow: inset 0 0 0 1.5px var(--fx-deep); }
+.cierre .contorno { display: none; }
+.demo-links a { color: var(--fx-ink); }
+
+/* La plantilla pinta sus estilos en un <style> posterior: aquí se les gana con el prefijo body */
+body .caja { border: 1px solid var(--fx-taupe); border-radius: 24px; box-shadow: none; }
+body .caja-cab { border-bottom: 1px solid var(--fx-taupe); }
+body .caja-cab b, body .reco b, body .paso h3, body .chat h3, body .caja h3, body .pd-cat h2, body .pd-info h3, body .pd-nombre { text-transform: none; font-family: var(--fx-font-disp); font-weight: 400; letter-spacing: normal; }
+body .caja-cab b { font-size: 1.25rem; }
+body .paso h3, body .chat h3 { font-size: 1.5rem; }
+body .pd-cat h2 { font-size: clamp(1.7rem, 3.4vw, 2.2rem); }
+body .pd-cat h2 small, body .pd-cat h2 span { font-style: italic; font-weight: 300; }
+body .op { border: 1px solid var(--fx-taupe); border-radius: 20px; box-shadow: none; background: var(--fx-bg); }
+body .chat { border: 1px solid var(--fx-taupe); border-radius: 24px; }
+body .chat.despues { border-color: var(--fx-deep); }
+body .paso b { font-size: .78rem; color: var(--fx-pop); }
+body .donde > .oscuro h3 { text-transform: none; font: 400 1.8rem/1.1 var(--fx-font-disp); }
+body .donde > .oscuro p { font: 400 clamp(2rem, 6vw, 2.8rem)/1.1 var(--fx-font-disp); }
+body .pd-lista .pd-item b, body .pd-item h4, body .pd-item h3 { text-transform: none; font-family: var(--fx-font-disp); font-weight: 400; letter-spacing: normal; font-size: 1.25rem; }
+footer img { background: var(--fx-bg); border-radius: 50%; padding: 8px; }
+
+/* Propuesta, panel y módulos en el mismo lenguaje: sin sombras duras, bordes finos, serif en títulos */
+body .plan, body .cifra, body .kpi, body .bloque, body .ticket, body .tabla, body .mod { border: 1px solid var(--fx-taupe); border-radius: 24px; box-shadow: none; }
+body .plan.reco { border-color: var(--fx-deep); box-shadow: none; }
+body .plan .nombre, body .ticket-cab b, body .chat-cab, body .cifra b, body .kpi b, body .bloque h3, body .hecho h3, body .tres h3, body .mod h3, body .mejora h3, body .ped-cab b, body .tabla th, body .plan-elegido, body .vimos-cta p, body .p-cuerpo h3, body .p-top b { text-transform: none; font-family: var(--fx-font-disp); font-weight: 400; letter-spacing: normal; }
+body .precio { font: 400 3.4rem/1 var(--fx-font-disp); }
+body .precio .unico, body .tipo, body .etiquetas span, body .pill { border-radius: 99px; text-transform: none; letter-spacing: normal; font-family: var(--fx-font-txt); font-weight: 600; }
+body .plan.reco .btn { border: 0; box-shadow: none; background: var(--fx-pop); color: var(--fx-deep); }
+body .telefono { border-radius: 44px; box-shadow: 12px 32px 80px 0 color-mix(in srgb, var(--fx-ink) 25%, transparent); }
+body .p-op { border: 1px solid var(--fx-taupe); border-radius: 18px; box-shadow: none; }
+body .p-barra { border: 0; border-radius: 99px; background: var(--fx-deep); color: var(--fx-bg); text-transform: none; font-family: var(--fx-font-txt); }
+body .aviso-flot { border: 1px solid var(--fx-taupe); border-radius: 20px; box-shadow: 12px 32px 80px 0 color-mix(in srgb, var(--fx-ink) 18%, transparent); }
+body .aviso-flot b { text-transform: none; font-family: var(--fx-font-disp); font-weight: 400; color: var(--fx-deep); }
+body .foto-marca img { border: 0; border-radius: 24px; box-shadow: none; }
+body .chat-cab { font-size: 1.3rem; }
+body .mod { background: var(--fx-paper); }
+body .mod.activo { box-shadow: none; border-color: var(--fx-deep); }
+body .mod .ico { border-width: 1.5px; }
+body .plan .sello { display: none; }
+body .plan.reco::before { content: "Recomendado"; align-self: flex-start; font: 600 .75rem/1 var(--fx-font-txt); letter-spacing: .06em; text-transform: uppercase; padding: 6px 10px; border-radius: 99px; background: var(--fx-pop); color: var(--fx-deep); }
+body .portada h1 .fino, body .portada h1 .grueso { text-transform: none; }
+body .portada h1 .fino { font: italic 300 clamp(1.9rem, 4.6vw, 3rem)/1.05 var(--fx-font-disp); }
+body .portada h1 .grueso { font: 400 clamp(3rem, 8vw, 5.6rem)/1 var(--fx-font-disp); }
+body .volver { color: var(--fx-ink); text-transform: none; letter-spacing: normal; font-family: var(--fx-font-txt); font-weight: 600; }
+body .barra-f .p div, body .prog .pista div { background: var(--fx-deep); }
+body .precio small, body .plan .precio small { text-transform: none; letter-spacing: normal; font-family: var(--fx-font-txt); }
+.mv-qr span { display: grid; gap: 4px; }
+body .portada .telefono { background: #1a2420; }
+
+/* ---- Acabado editorial: secciones que se encimán, hoja de papel, motivo del logo y detalles tipográficos ---- */
+html { scroll-padding-top: 90px; }
+h1, h2, h3, .doble { text-wrap: balance; }
+p, li { text-wrap: pretty; }
+body { font-feature-settings: "kern", "liga", "calt"; text-rendering: optimizeLegibility; }
+main { counter-reset: sec; }
+
+/* Cortes suaves: las secciones oscuras y el hero son hojas con esquinas redondeadas que se montan sobre las vecinas */
+.sec.oscuro, .cierre.oscuro, .hero.oscuro { position: relative; z-index: 1; border-radius: 44px; }
+.hero.oscuro { border-radius: 0 0 44px 44px; margin-bottom: -44px; padding-bottom: 44px; }
+.sec.oscuro:not(.cierre), .cierre.oscuro { margin-block: -44px; padding-block: calc(clamp(60px, 9vw, 110px) + 44px); }
+.sec.papel, .sec.arena, .sec:not(.oscuro):not(.papel):not(.arena) { padding-block: calc(clamp(60px, 9vw, 110px) + 24px); }
+.sec.papel, .sec.arena { isolation: isolate; }
+.cab-pag { border-radius: 0 0 44px 44px; padding-bottom: calc(clamp(30px, 5vw, 56px) + 24px); }
+footer { border-radius: 44px 44px 0 0; margin-top: -44px; position: relative; z-index: 1; padding-top: 70px; }
+@media (max-width: 700px) { .sec.oscuro, .cierre.oscuro { border-radius: 30px; } .hero.oscuro, .cab-pag { border-radius: 0 0 30px 30px; } }
+
+/* Fondo más rico en las secciones oscuras: un resplandor suave de la misma gama */
+.sec.oscuro:not(.cierre) { background: radial-gradient(120% 90% at 88% 0%, color-mix(in srgb, var(--fx-pop) 13%, var(--fx-deep)), var(--fx-deep) 62%); overflow: hidden; }
+.cab-pag.oscuro { background: radial-gradient(120% 120% at 90% 0%, color-mix(in srgb, var(--fx-pop) 13%, var(--fx-deep)), var(--fx-deep) 62%); }
+
+/* Motivo de la flor del logo como marca de agua (máscara: toma el color del fondo). Estático en las secciones; gira muy lento solo en el hero */
+.sec.oscuro:not(.cierre)::before, .hero.oscuro .wrap::before { content: ""; position: absolute; pointer-events: none; background: var(--fx-pop);
+  -webkit-mask: url("../assets/logo.webp") center / contain no-repeat; mask: url("../assets/logo.webp") center / contain no-repeat; }
+.sec.oscuro:not(.cierre)::before { right: -90px; bottom: -110px; width: 420px; height: 420px; opacity: .06; z-index: 0; }
+.sec.oscuro > .wrap { position: relative; z-index: 1; }
+.hero.oscuro .wrap::before { right: 2%; top: 50%; width: min(620px, 70vw); aspect-ratio: 1; margin-top: calc(min(620px, 70vw) / -2); background: var(--fx-deep); opacity: .05; z-index: 0; animation: fx-motivo 180s linear infinite; }
+.hero.oscuro .wrap > * { position: relative; z-index: 1; }
+
+/* Numeración editorial sobre cada titular de sección y filete fino */
+.sec .doble::before { counter-increment: sec; content: counter(sec, decimal-leading-zero) "  ——"; display: block; margin-bottom: 14px; font: 600 .72rem/1 var(--fx-font-txt); letter-spacing: .18em; text-transform: uppercase; opacity: .6; }
+.sec .doble::after { content: ""; display: block; width: 44px; height: 1px; margin-top: 18px; background: currentColor; opacity: .35; }
+.cierre .doble::after { margin-inline: auto; }
+.cierre .doble::before, .cab-pag .doble::before { display: none; }
+
+/* Fotos en arco (forma de puerta, típica de spa) y filete fino interior */
+.hero-foto { border-radius: 999px 999px 28px 28px; box-shadow: 12px 32px 80px 0 color-mix(in srgb, var(--fx-ink) 22%, transparent); outline: 1px solid color-mix(in srgb, var(--fx-deep) 35%, transparent); outline-offset: 10px; }
+.hero .sello { display: none; }
+.foto-marca img { border-radius: 999px 999px 28px 28px; }
+.galeria figure:nth-child(2) { border-radius: 999px 999px 24px 24px; }
+
+/* Botones con flecha fina; la cabecera con vidrio suave */
+.btn::after { content: "→"; font-weight: 300; transition: transform var(--fx-fast) var(--fx-ease); }
+.btn-linea::after { opacity: .8; }
+@media (hover: hover) { .btn:hover::after { transform: translateX(4px); } }
+.cabecera { -webkit-backdrop-filter: blur(14px) saturate(1.1); backdrop-filter: blur(14px) saturate(1.1); }
+
+/* Papel con grano casi imperceptible: da textura sin ruido */
+.sec.papel::before { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; opacity: .5;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .3  0 0 0 0 .25  0 0 0 0 .15  0 0 0 .07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23p)'/%3E%3C/svg%3E"); }
+
+/* Carta como lista editorial: una columna, nombre a la izquierda, precio y botón a la derecha */
+body .pd-lista { grid-template-columns: 1fr; gap: 12px; }
+body .pd-cat h2 { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; font: 400 clamp(1.6rem, 3.2vw, 2.1rem)/1.1 var(--fx-font-disp); border-bottom: 1px solid var(--fx-taupe); padding-bottom: 12px; margin-bottom: 14px; }
+body .pd-cat h2 small, body .pd-cat h2 span, body .pd-cat h2 em { font: italic 300 1em/1 var(--fx-font-disp); opacity: .8; }
+body .pd-lista .pd-item { border-radius: 20px; padding: 18px 20px; align-items: center; }
+body .pd-lista .pd-item .pd-precio { font: 400 1.15rem/1 var(--fx-font-txt); letter-spacing: normal; }
+body .pd-btn, body .pd-btn-add { text-transform: none; letter-spacing: normal; font-family: var(--fx-font-txt); font-weight: 600; font-size: .95rem; }
+body .pd-btn-add { background: transparent; color: var(--fx-deep); box-shadow: inset 0 0 0 1.5px var(--fx-deep); border: 0; }
+body .pd-lista .pd-item .pd-desc { opacity: .75; }
+/* Tarjeta de WhatsApp de "Dónde": los estilos en línea de la plantilla se pisan con !important */
+body .donde > .oscuro h3 { text-transform: none !important; font: 400 1.7rem/1.1 var(--fx-font-disp) !important; }
+body .donde > .oscuro > p { font: 400 clamp(2rem, 6vw, 2.8rem)/1.1 var(--fx-font-disp) !important; }
+/* El pie cierra la página sin franja debajo; deja espacio para la barra fija */
+body { padding-bottom: 0; }
+footer { padding-bottom: 110px; }
+
+body .pd-cat h2 { text-transform: none; line-height: 1.1; }
+body .pd-cat h2 .fino { font: italic 300 clamp(1.5rem, 3vw, 2rem)/1.1 var(--fx-font-disp); opacity: .85; }
+body .pd-cat h2 .grueso { font: 400 clamp(1.7rem, 3.4vw, 2.3rem)/1.1 var(--fx-font-disp); }
+/* La sección crema de "Dónde" también se monta como hoja para evitar el corte recto */
+.sec.arena { position: relative; z-index: 1; border-radius: 44px; margin-block: -44px; padding-block: calc(clamp(60px, 9vw, 110px) + 44px); }
+@media (max-width: 700px) { .sec.arena { border-radius: 30px; } }
+
+@media (prefers-reduced-motion: reduce) { .pd-lista .pd-item { transition: none; } .pd-lista .pd-item:hover { transform: none; } }

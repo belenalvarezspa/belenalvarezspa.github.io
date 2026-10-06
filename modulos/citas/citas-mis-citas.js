@@ -12,8 +12,8 @@
       <form id="f-in" novalidate><label class="ci-campo">Tu código<input name="codigo" autocomplete="off" autocapitalize="characters" placeholder="BA-XXXXXX" maxlength="20" value="${esc(p.get('c') || '')}"><small>Te lo enviamos por WhatsApp cuando confirmamos tu primera cita.</small></label>
       <label class="ci-campo">Últimos 4 dígitos de tu celular<input name="u4" inputmode="numeric" maxlength="4" autocomplete="off" placeholder="1234"></label>
       <p class="ci-err" id="e-in" role="alert">${esc(msg || '')}</p><button class="ci-btn" type="submit">Ver mis citas</button></form></div>
-      ${ej ? `<div class="ci-pista"><b>Para probar la demo:</b> código <b>${esc(ej.codigo)}</b> y últimos 4 dígitos <b>${esc(ej.ultimos4)}</b>. <button type="button" class="ci-enlace" id="auto">Escribirlos por mí</button></div>` : ''}
-      <p style="text-align:center">¿No tienes código? <a href="inicio.html#reservar">Reserva tu primera cita</a> o <a data-wa-mc href="#">escríbenos por WhatsApp</a>.</p></div>`;
+      ${ej && !(window.CITASDATA || {}).produccion ? `<div class="ci-pista"><b>Para probar la demo:</b> código <b>${esc(ej.codigo)}</b> y últimos 4 dígitos <b>${esc(ej.ultimos4)}</b>. <button type="button" class="ci-enlace" id="auto">Escribirlos por mí</button></div>` : ''}
+      <p style="text-align:center">¿No tienes código? <a href="index.html#reservar">Reserva tu primera cita</a> o <a data-wa-mc href="#">escríbenos por WhatsApp</a>.</p></div>`;
     const f = document.getElementById('f-in');
     document.querySelector('[data-wa-mc]').href = CITAS.wa('Hola, necesito ayuda con mi cita', WA);
     const a = document.getElementById('auto'); if (a) a.onclick = () => { f.codigo.value = ej.codigo; f.u4.value = ej.ultimos4; };
@@ -30,7 +30,7 @@
     try { t = await CITAS.rpc('tarjeta', { p_token: CITAS.cliente.token() }); } catch (e) { CITAS.cliente.salir(); return entrada('Tu sesión venció. Entra otra vez.'); }
     const cs = t.citas || [];
     cont.innerHTML = `<div class="ci-app"><div class="ci-card"><h3>Hola, ${esc(primer(t.nombre))}</h3><p>Tu código: <span class="ci-codigo">${esc(t.codigo)}</span></p>
-      <p><a class="ci-btn" href="inicio.html#reservar">Reservar otra cita</a> <button type="button" class="ci-btn linea" id="salir">Salir</button></p></div>
+      <p><a class="ci-btn" href="index.html#reservar">Reservar otra cita</a> <button type="button" class="ci-btn linea" id="salir">Salir</button></p></div>
       <div class="ci-card"><h3>Tus próximas citas</h3>${cs.length ? cs.map(c => `<div class="ci-fila"><div><b>${esc(c.servicio)}</b><small>${esc(diaLargo(c.dia))} · ${esc(c.hora)}–${esc(c.hora_fin)}</small></div>
         <div class="der">${chip(c.estado)}${c.cancelable ? `<button type="button" class="ci-btn rojo peq" data-c="${c.id}">Cancelar</button>` : `<a class="ci-btn linea peq" data-wa-c="${esc(c.servicio)}" href="#">Cambiar por WhatsApp</a>`}</div></div>`).join('') : '<p class="ci-vacio">No tienes citas por atender. ¡Reserva una!</p>'}
       <p style="margin-top:12px;opacity:.75;font-size:.92rem">Puedes cancelar hasta 6 horas antes. Después, escríbenos por WhatsApp.</p></div></div>`;

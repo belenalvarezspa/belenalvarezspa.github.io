@@ -1,6 +1,6 @@
-# Belén Alvarez Centro Estético & Spa · demo
+# Belén Alvarez Centro Estético & Spa
 
-Demo con datos de ejemplo (versión de trabajo). Se publica en https://belenalvarezspa.github.io
+Sitio del plan Pro: página con reserva de citas, «Mis citas» y panel del equipo. https://belenalvarezspa.github.io
 
-- `index.html` entrada de la demo · `inicio.html` página · `mis-citas.html` · `personal.html` (panel del equipo) · `premium.html` · `propuesta.html`
-- Los datos de la demo se guardan solo en el navegador. Las citas reales irán a Supabase (schema `belen_alvarez`).
+- `index.html` página · `mis-citas.html` · `personal.html` (panel del equipo)
+- Las citas se guardarán en Supabase (schema `belen_alvarez`). Mientras no se conecte, la reserva y el panel usan datos de ejemplo del navegador.

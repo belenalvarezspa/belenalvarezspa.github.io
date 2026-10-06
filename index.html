@@ -17,63 +17,290 @@
 <link rel="stylesheet" href="efectos/boticario.css">
 <style>:root { --fx-bg: #FEF9EF; --fx-paper: #F5EEE1; --fx-accent: #EAE0BE; --fx-ink: #12211B; --fx-deep: #004935; --fx-pop: #EAE0BE; --fx-font: "Inter", sans-serif; --fx-font-disp: "Newsreader", serif; --fx-font-txt: "Inter", sans-serif; }</style>
 
-<title>Demo de Belén Alvarez Centro Estético &amp; Spa</title>
-<meta name="description" content="Demo de Belén Alvarez Centro Estético &amp; Spa: la página, el panel y la propuesta.">
+<title>Belén Alvarez Centro Estético &amp; Spa · Quito</title>
+<meta name="description" content="Centro estético y spa en Quito: tratamientos faciales y corporales, depilación definitiva y masajes. Reserva tu cita por WhatsApp.">
+<meta property="og:title" content="Belén Alvarez Centro Estético &amp; Spa · Quito">
+<meta property="og:description" content="Tratamientos faciales y corporales. Más de 9 años cuidando tu piel. Reserva por WhatsApp.">
+<meta property="og:image" content="assets/og.jpg">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "DaySpa", "name": "Belén Alvarez Centro Estético & Spa Quito", "telephone": "+593992561081", "address": {"@type": "PostalAddress", "streetAddress": "James Colnet N40-64 y Alonso de Torres", "addressLocality": "Quito", "addressRegion": "Pichincha", "addressCountry": "EC"}, "sameAs": ["https://www.instagram.com/belen.alvarezspa", "[MARCADOR: facebook]"]}
+</script>
+<link rel="stylesheet" href="modulos/citas/citas.css">
 <style>
-/* Entrada de la demo: explica qué es cada página y cómo probarla. Solo variables --fx-* de la marca. */
-.hub-hero { padding-block: clamp(40px, 7vw, 84px) clamp(34px, 5vw, 64px); }
-.hub-lista { display: flex; flex-wrap: wrap; gap: 18px; }
-.hub-card { flex: 1 1 min(100%, 250px); display: grid; gap: 8px; align-content: start; padding: clamp(18px, 3vw, 24px); min-width: 0; text-decoration: none; color: var(--fx-ink); background: var(--fx-bg); border: 3px solid var(--fx-deep); border-radius: 10px; box-shadow: 5px 5px 0 var(--fx-deep); transition: transform .16s var(--fx-ease, ease-out), box-shadow .16s; }
-.hub-card:active { transform: translate(5px, 5px); box-shadow: 0 0 0 var(--fx-deep); }
-.hub-card small { font: 800 .8rem/1 var(--fx-font-txt); letter-spacing: .08em; text-transform: uppercase; background: var(--fx-deep); color: var(--fx-bg); justify-self: start; padding: 5px 8px; border-radius: 4px; }
-.hub-card b { font: 900 clamp(1.7rem, 4vw, 2.2rem)/.95 var(--fx-font-disp); text-transform: uppercase; }
-.hub-card span { font-size: 1.04rem; }
-.hub-card i { font: 800 1.05rem var(--fx-font-disp); font-style: normal; text-transform: uppercase; letter-spacing: .05em; margin-top: 6px; }
-.hub-card.principal { flex-basis: 100%; background: var(--fx-accent); }
-.hub-card.principal small { background: var(--fx-bg); color: var(--fx-deep); }
-.hub-card.principal b { font-size: clamp(2.3rem, 7vw, 3.8rem); }
-.hub-pasos ol { margin: 22px 0 0; padding-left: 1.3em; display: grid; gap: 12px; max-width: 64ch; font-size: 1.1rem; }
-.hub-pasos li::marker { font-weight: 800; }
-.hub-nota { margin-top: 26px; padding-top: 16px; border-top: 2px dashed color-mix(in srgb, var(--fx-deep) 30%, transparent); max-width: 64ch; font-size: .98rem; }
+/* Hero */
+.hero { position: relative; overflow: hidden; }
+.hero .wrap { display: grid; gap: 28px; align-items: center; padding-block: clamp(28px, 5vw, 64px) clamp(44px, 6vw, 80px); grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); }
+.hero h1 { text-transform: uppercase; line-height: .84; }
+.hero h1 .fino { display: block; font: 300 clamp(2.4rem, 6.4vw, 4.6rem)/.9 var(--fx-font-disp); }
+.hero h1 .grueso { display: block; font: 900 clamp(4.2rem, 13vw, 9.6rem)/.84 var(--fx-font-disp); letter-spacing: .005em; }
+.hero .lead { margin-top: 20px; max-width: 40ch; font-size: 1.2rem; color: var(--fx-soft); }
+.hero-media { position: relative; justify-self: end; width: min(100%, 540px); }
+.hero-foto { aspect-ratio: 572 / 553; border-radius: 22px; overflow: hidden; box-shadow: 10px 10px 0 var(--fx-accent); }
+.hero-foto img { width: 100%; height: 100%; object-fit: cover; }
+.hero .sello { position: absolute; left: -34px; bottom: -26px; z-index: 2; }
+@media (max-width: 860px) {
+  .hero .wrap { grid-template-columns: 1fr; }
+  .hero-media { order: -1; justify-self: stretch; width: 100%; }
+  .hero-foto { aspect-ratio: 4 / 3.6; }
+  .hero .sello { left: auto; right: 10px; bottom: -22px; width: 108px; height: 108px; font-size: .98rem; }
+}
+
+/* Diagnóstico */
+.diag .wrap { display: grid; gap: clamp(28px, 5vw, 64px); grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); align-items: center; }
+@media (max-width: 860px) { .diag .wrap { grid-template-columns: 1fr; } }
+.caja { background: var(--fx-paper); border: 3px solid var(--fx-deep); border-radius: 20px; box-shadow: 8px 8px 0 var(--fx-deep); padding: clamp(20px, 3vw, 30px); min-height: 440px; display: flex; flex-direction: column; gap: 16px; }
+.caja-cab { display: flex; align-items: center; gap: 12px; padding-bottom: 12px; border-bottom: 2px dashed color-mix(in srgb, var(--fx-deep) 30%, transparent); }
+.caja-cab img { width: 42px; height: 42px; border-radius: 50%; }
+.caja-cab b { display: block; font: 900 1.3rem/1 var(--fx-font-disp); text-transform: uppercase; }
+.caja-cab small { font-size: .95rem; }
+.prog { display: flex; align-items: center; gap: 12px; font: 700 .95rem var(--fx-font-txt); }
+.prog .pista { flex: 1; height: 8px; border-radius: 99px; background: color-mix(in srgb, var(--fx-deep) 15%, transparent); overflow: hidden; }
+.prog .pista div { height: 100%; background: var(--fx-accent); border-radius: 99px; transition: width .35s var(--fx-ease); }
+.caja h3 { font: 900 clamp(1.8rem, 4vw, 2.4rem)/.95 var(--fx-font-disp); text-transform: uppercase; }
+.ops { display: grid; gap: 10px; }
+.op { display: flex; align-items: center; gap: 12px; min-height: 58px; padding: 10px 16px; text-align: left; background: #fff; border: 2px solid var(--fx-deep); border-radius: 12px; font: 700 1.12rem/1.2 var(--fx-font-txt); color: var(--fx-ink); cursor: pointer; transition: transform .2s var(--fx-ease), box-shadow .2s; box-shadow: 3px 3px 0 var(--fx-deep); }
+.op:active { transform: translate(3px, 3px); box-shadow: none; }
+.op small { display: block; font-weight: 400; font-size: .95rem; }
+.enlace { align-self: flex-start; min-height: 44px; border: 0; background: none; font: 700 1.05rem var(--fx-font-txt); color: var(--fx-ink); cursor: pointer; padding: 0; text-decoration: underline; text-underline-offset: 3px; }
+.reco { background: var(--fx-deep); color: var(--fx-bg); border-radius: 14px; padding: 18px; }
+.reco small { color: var(--fx-pop); font: 700 .95rem var(--fx-font-txt); }
+.reco b { display: block; font: 900 clamp(2.1rem, 5vw, 2.8rem)/.9 var(--fx-font-disp); text-transform: uppercase; margin: 6px 0; }
+.reco p { color: var(--fx-soft); }
+.reco .precio { font: 900 1.8rem/1 var(--fx-font-disp); color: var(--fx-pop); margin-top: 10px; }
+
+/* Cómo pides */
+.pasos { display: grid; gap: 30px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr)); margin-top: 44px; }
+.paso { display: flex; gap: 16px; align-items: flex-start; }
+.paso .ico { color: var(--fx-pop); }
+.paso b { font: 300 1.1rem var(--fx-font-disp); color: var(--fx-pop); }
+.paso h3 { font: 800 1.6rem/1 var(--fx-font-disp); text-transform: uppercase; margin: 2px 0 6px; }
+.paso p { color: var(--fx-soft); }
+
+/* Galería */
+.galeria { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); margin-top: 40px; }
+.galeria figure { margin: 0; border-radius: 18px; border: 3px solid var(--fx-bg); aspect-ratio: 1 / 1; }
+.galeria img { width: 100%; height: 100%; object-fit: cover; }
+.galeria figure:nth-child(2) { transform: rotate(1.5deg); } .galeria figure:nth-child(3) { transform: rotate(-1.5deg); }
+
+/* Qué cambia */
+.cambia { display: grid; gap: 22px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); margin-top: 40px; }
+.chat { border-radius: 20px; padding: 18px; background: var(--fx-chat); border: 3px solid var(--fx-deep); }
+.chat h3 { font: 800 1.4rem/1 var(--fx-font-disp); text-transform: uppercase; margin-bottom: 12px; display: flex; gap: 10px; align-items: center; }
+.burbuja { max-width: 88%; padding: 9px 12px; border-radius: 12px; margin: 8px 0; font: 400 1.02rem/1.35 var(--fx-font-txt); background: #fff; white-space: pre-line; }
+.burbuja.yo { margin-left: auto; background: #d9fdd3; }
+.chat.despues { background: var(--fx-deep); }
+.chat.despues h3 { color: var(--fx-bg); }
+
+/* Dónde */
+.donde { display: grid; gap: 30px; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: center; }
+@media (max-width: 860px) { .donde { grid-template-columns: 1fr; } }
+.dato { display: flex; gap: 14px; align-items: center; margin-top: 16px; font-size: 1.15rem; }
+.dato .ico { width: 50px; height: 50px; }
+
+/* Cierre */
+.cierre { overflow: hidden; text-align: center; }
+.cierre .contorno { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); white-space: nowrap; }
+.cierre .wrap { position: relative; }
+.cierre .acciones { justify-content: center; }
+.demo-links { display: flex; flex-wrap: wrap; gap: 8px 18px; justify-content: center; margin-top: 22px; font-size: 1.02rem; }
 </style>
 </head>
-<body data-pagina="Inicio de la demo" data-secciones='["Inicio de la demo"]'>
+<body data-pagina="Landing con citas (Pro)" data-secciones='["Inicio", "Tu tratamiento ideal", "Cómo reservas", "Reserva tu cita", "Galería", "Qué cambia", "Dónde estamos", "Cierre"]'>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <symbol id="i-reloj" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s7-6 7-11.5a7 7 0 0 0-14 0C5 15 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></symbol>
+  <symbol id="i-tel" viewBox="0 0 24 24"><rect x="7" y="2.5" width="10" height="19" rx="2"/><path d="M11 18.5h2"/></symbol>
+  <symbol id="i-burger" viewBox="0 0 24 24"><path d="M4 10a8 5 0 0 1 16 0z"/><path d="M3.5 13.5h17M4 17h16a0 0 0 0 1 0 0 3 3 0 0 1-3 3H7a3 3 0 0 1-3-3z"/><path d="M9 7h.01M13 6.5h.01M15.5 8h.01"/></symbol>
+  <symbol id="i-bolsa" viewBox="0 0 24 24"><path d="M5 8h14l-1 12H6z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></symbol>
+  <symbol id="i-moto" viewBox="0 0 24 24"><circle cx="6" cy="17" r="3"/><circle cx="18" cy="17" r="3"/><path d="M9 17h5l2-6h-4M16 11l2 6M12 11 10 7H7"/></symbol>
+  <symbol id="i-envio" viewBox="0 0 24 24"><path d="M21 4 3 11l7 3 3 7z"/><path d="m10 14 4-4"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4z"/></symbol>
+  <symbol id="i-web" viewBox="0 0 24 24"><rect x="3.5" y="4.5" width="17" height="15" rx="1.5"/><path d="M3.5 9h17M7 6.8h.01M9.5 6.8h.01"/></symbol>
+  <symbol id="i-ok" viewBox="0 0 24 24"><path d="m5 12 4.5 4.5L19 7"/></symbol>
+  <symbol id="i-pago" viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="1.5"/><path d="M3 10h18M7 14h3"/></symbol>
+  <symbol id="i-llave" viewBox="0 0 24 24"><rect x="5" y="10.5" width="14" height="10" rx="1.5"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/></symbol>
+  <symbol id="i-foto" viewBox="0 0 24 24"><path d="M4 8h3l2-2.5h6L17 8h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></symbol>
+  <symbol id="i-lista" viewBox="0 0 24 24"><path d="M9 6h11M9 12h11M9 18h11M4.5 6h.01M4.5 12h.01M4.5 18h.01"/></symbol>
+  <symbol id="i-copa" viewBox="0 0 24 24"><path d="M8 4h8v5a4 4 0 0 1-8 0zM8 6H5a3 3 0 0 0 3 4M16 6h3a3 3 0 0 1-3 4M12 13v4M8.5 20h7"/></symbol>
+  <symbol id="i-qr" viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="6" height="6" rx="1"/><rect x="14.5" y="3.5" width="6" height="6" rx="1"/><rect x="3.5" y="14.5" width="6" height="6" rx="1"/><path d="M14.5 14.5h2v2h-2zM18.5 14.5h2M14.5 18.5h2M18.5 18.5v2"/></symbol>
+  <symbol id="i-estrella" viewBox="0 0 24 24"><path d="m12 3.5 2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.8 6.8 19.6l1-5.8-4.3-4.1 5.9-.9z"/></symbol>
+  <symbol id="i-tarjeta" viewBox="0 0 24 24"><rect x="3" y="5.5" width="18" height="13" rx="2.5"/><path d="M3 10h18M7 15h4"/></symbol>
+  <symbol id="i-caja" viewBox="0 0 24 24"><path d="M6 3.5h12v5H6zM4 8.5h16l-1.5 11h-13z"/><path d="M9 13h6"/></symbol>
+  <symbol id="i-equipo" viewBox="0 0 24 24"><circle cx="9" cy="8.5" r="3"/><circle cx="17" cy="9.5" r="2.3"/><path d="M3.5 19c.5-3.5 2.7-5.5 5.5-5.5s5 2 5.5 5.5M15 14.2c2.6-.4 4.7 1 5.5 4.3"/></symbol>
+  <symbol id="i-juego" viewBox="0 0 24 24"><path d="M8 4h8v5a4 4 0 0 1-8 0zM8 6H5a3 3 0 0 0 3 4M16 6h3a3 3 0 0 1-3 4M12 13v4M8.5 20h7"/></symbol>
+  <symbol id="i-agenda" viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4M8 14h2M13 14h3M8 17h2"/></symbol>
+  <symbol id="i-panel" viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.5"/></symbol>
+</defs></svg>
+
+
+<div class="barra"><div class="wrap">
+  <div class="datos">
+    <span class="ocultable"><svg><use href="#i-reloj"/></svg> <span class="pend">[MARCADOR: horario]</span></span>
+    <span><svg><use href="#i-pin"/></svg>Quito · James Colnet y Alonso de Torres</span>
+    <span class="ocultable"><svg><use href="#i-tel"/></svg>0992561081</span>
+  </div>
+  <a href="#reservar">Reservar mi cita</a>
+</div></div>
 
 <header class="cabecera"><div class="wrap">
-  <a class="marca" href="index.html"><img src="assets/logo.webp" alt="" width="52" height="52"><span><b>Belén Alvarez</b><small>Demo para ti</small></span></a>
+  <a class="marca" href="#inicio"><img src="assets/logo.webp" alt="" width="52" height="52"><span><b>Belén Alvarez</b><small>Centro estético &amp; spa</small></span></a>
+  <nav aria-label="Principal"><a href="#diagnostico">Tu tratamiento ideal</a><a href="#reservar">Servicios</a><a href="#como">Cómo reservas</a><a href="#donde">Dónde</a><a href="mis-citas.html">Mis citas</a></nav>
 </div></header>
 
 <main>
-<section class="oscuro hub-hero"><div class="wrap">
-  <h1 class="doble fx-entra fx-d1"><span>Demo de</span>Belén Alvarez</h1>
-  <p class="intro fx-entra fx-d2" style="color:var(--fx-soft)">Así funcionaría tu sistema de citas: la página donde tus clientas eligen día y hora libres, su espacio «Mis citas», tu panel de trabajo, la versión Premium y la propuesta. Todo con datos de ejemplo.</p>
-</div></section>
-
-<section class="sec papel"><div class="wrap">
-  <nav class="hub-lista" aria-label="Páginas de la demo" data-stagger>
-    <a class="hub-card principal" href="inicio.html"><small>Empieza aquí</small><b>Tu página con reservas</b><span>Tu marca, el diagnóstico y la reserva: la clienta elige tratamiento, día y una hora que de verdad está libre.</span><i>Entrar →</i></a>
-    <a class="hub-card" href="mis-citas.html"><small>Plan Pro · clienta</small><b>Mis citas</b><span>Con su código ve sus próximas citas y puede cancelarlas. El código le llega por WhatsApp cuando confirmas.</span><i>Entrar →</i></a>
-    <a class="hub-card" href="personal.html"><small>Plan Pro · tu equipo</small><b>Tu panel</b><span>Citas por confirmar, agenda de la semana, clientas, resumen y ajustes de horario y tratamientos.</span><i>Entrar →</i></a>
-    <a class="hub-card" href="premium.html"><small>Plan Premium</small><b>Panel modular</b><span>Reporte mensual y módulos que se encienden cuando los necesites.</span><i>Entrar →</i></a>
-    <a class="hub-card" href="propuesta.html"><small>Para ti</small><b>La propuesta</b><span>Los tres planes, qué incluye cada uno y los módulos recomendados.</span><i>Entrar →</i></a>
+<section class="hero oscuro" id="inicio"><div class="wrap">
+  <div>
+    <h1><span class="fino fx-entra fx-d1">Tu momento de</span><span class="grueso fx-golpe">autocuidado</span></h1>
+    <p class="lead fx-entra fx-d3">Centro especializado en tratamientos faciales y corporales. Más de 9 años cuidando la piel de nuestros clientes, en Loja desde 2015 y en Quito desde 2020.</p>
+    <div class="acciones fx-entra fx-d4">
+      <a class="btn" href="#diagnostico">Tu tratamiento ideal</a>
+      <a class="btn btn-linea" href="#reservar">Reservar cita</a>
+    </div>
+  </div>
+  <div class="hero-media fx-entra fx-d2">
+    <div class="hero-foto"><img src="assets/marcador.svg" alt="[MARCADOR: foto de cabina o tratamiento]" width="572" height="553" fetchpriority="high"></div>
     
-  </nav>
+  </div>
 </div></section>
 
-<section class="sec"><div class="wrap hub-pasos">
-  <h2 class="doble" data-reveal><span>Cómo</span>probarla</h2>
-  <ol><li><b>Reserva una cita.</b> En tu página elige un tratamiento, un día y una hora. Solo aparecen horas libres.</li><li><b>Confírmala en tu panel.</b> Entra al panel como Administración o Recepción: la cita aparece en «Por confirmar». Al confirmar se abre WhatsApp con el mensaje y el código de la clienta.</li><li><b>Mira Mis citas.</b> Usa el código BA-7K3Q9V y los últimos 4 dígitos que muestra la página (en la demo hay un botón que los escribe por ti).</li><li><b>Prueba los ajustes.</b> Como administración cambia el horario o la duración de un tratamiento y mira cómo cambian los espacios libres.</li></ol>
-  <p class="hub-nota">Servicios, duraciones, precios y clientas son de ejemplo. Lo que pruebes se guarda solo en este navegador y no se comparte.</p>
+
+
+<section class="sec papel diag" id="diagnostico"><div class="wrap">
+  <div data-reveal>
+    <h2 class="doble"><span>Encuentra:</span>Tu tratamiento ideal</h2>
+    <p class="intro">Cuéntanos qué quieres cuidar y te sugerimos por dónde empezar. En tu cita lo confirmamos contigo.</p>
+  </div>
+  <div class="caja" id="caja-diag" aria-live="polite"></div>
+</div></section>
+
+<section class="sec oscuro" id="como"><div class="wrap">
+  <h2 class="doble" data-reveal><span>Reservar es</span>así de simple</h2>
+  <div class="pasos" data-stagger>
+    <div class="paso"><span class="ico"><svg><use href="#i-lista"/></svg></span><div><b>1</b><h3>Elige tu tratamiento</h3><p>Toca el que quieres en la lista de tratamientos.</p></div></div>
+    <div class="paso"><span class="ico"><svg><use href="#i-reloj"/></svg></span><div><b>2</b><h3>Escoge día y hora</h3><p>Solo ves horarios libres: lo que eliges está disponible.</p></div></div>
+    <div class="paso"><span class="ico"><svg><use href="#i-chat"/></svg></span><div><b>3</b><h3>Confirmamos por WhatsApp</h3><p>Te escribimos para confirmar y te enviamos tu código para ver o cancelar tu cita.</p></div></div>
+    
+  </div>
+</div></section>
+
+<section class="sec" id="reservar"><div class="wrap">
+  <h2 class="doble" data-reveal><span>Reserva tu</span>cita</h2>
+  <p class="intro" data-reveal>Elige tu tratamiento, el día y una hora libre. Te confirmamos por WhatsApp; duración y precio exactos los verás aquí cuando estén cargados.</p>
+  <div id="reserva"></div>
+</div></section>
+
+<section class="sec oscuro" id="galeria"><div class="wrap">
+  <h2 class="doble" data-reveal><span>Dentro del</span>centro</h2>
+  <div class="galeria" data-stagger>
+    <figure class="fx-zoom"><img src="assets/marcador.svg" alt="[MARCADOR: foto cabina]" width="458" height="464" loading="lazy"></figure>
+    <figure class="fx-zoom"><img src="assets/marcador.svg" alt="[MARCADOR: foto tratamiento]" width="571" height="453" loading="lazy"></figure>
+    <figure class="fx-zoom"><img src="assets/marcador.svg" alt="[MARCADOR: foto equipo]" width="563" height="694" loading="lazy"></figure>
+    
+  </div>
+</div></section>
+
+<section class="sec papel" id="cambia"><div class="wrap">
+  <h2 class="doble" data-reveal><span>Menos mensajes,</span>más citas</h2>
+  <p class="intro" data-reveal>Ejemplo de cómo cambia el primer contacto con tus clientas: la cita llega con día y hora ya elegidos.</p>
+  <div class="cambia" data-stagger>
+    <div class="chat"><h3><span class="ico" style="width:40px;height:40px"><svg style="width:20px;height:20px"><use href="#i-chat"/></svg></span>Hoy (ejemplo)</h3>
+      <div class="burbuja yo">Hola, ¿cuánto cuesta la limpieza facial?</div><div class="burbuja yo">¿Tienen turno esta semana?</div><div class="burbuja">Déjame revisar la agenda y te aviso</div><div class="burbuja yo">¿Y la depilación definitiva?</div><div class="burbuja yo">Gracias, lo pienso</div>
+    </div>
+    <div class="chat despues"><h3><span class="ico" style="width:40px;height:40px"><svg style="width:20px;height:20px"><use href="#i-envio"/></svg></span>Con tu página (ejemplo)</h3>
+      <div class="burbuja yo">Hola Belén Alvarez, soy Camila. Acabo de pedir una cita desde la web:
+Limpieza facial, viernes a las 15:00.</div>
+    </div>
+  </div>
+</div></section>
+
+<section class="sec arena" id="donde"><div class="wrap donde">
+  <div data-reveal>
+    <h2 class="doble"><span>Visítanos en</span>Quito</h2>
+    <div class="dato"><span class="ico"><svg><use href="#i-pin"/></svg></span><span>James Colnet N40-64 y Alonso de Torres, Quito</span></div>
+    <div class="dato"><span class="ico"><svg><use href="#i-reloj"/></svg></span><span> <span class="pend">[MARCADOR: horario]</span></span></div>
+    <div class="acciones">
+      <a class="btn" href="https://www.google.com/maps/search/?api=1&amp;query=Belén Alvarez Centro Estético &amp; Spa James Colnet N40-64 Quito" target="_blank" rel="noopener">Cómo llegar</a>
+      <a class="btn btn-linea" id="ig" target="_blank" rel="noopener">Instagram</a>
+    </div>
+  </div>
+  <div class="oscuro" style="border-radius:20px;padding:clamp(22px,3vw,32px);box-shadow:8px 8px 0 var(--fx-deep);border:3px solid var(--fx-deep)" data-reveal>
+    <h3 style="font:900 2rem/.95 var(--fx-font-disp);text-transform:uppercase">Escríbenos por WhatsApp</h3>
+    <p style="font:900 clamp(2.4rem,7vw,3.4rem)/1 var(--fx-font-disp);color:var(--fx-pop);margin:10px 0 6px">0992561081</p>
+    <div class="dato"><span class="ico" style="color:var(--fx-pop)"><svg><use href="#i-agenda"/></svg></span><span>Tu cita ya viene con tratamiento, día y hora</span></div>
+    <div class="dato"><span class="ico" style="color:var(--fx-pop)"><svg><use href="#i-chat"/></svg></span><span>Confirmamos tu cita por el mismo chat </span></div>
+    <div class="acciones"><a class="btn" data-wa="Hola, quiero reservar una cita">Escribir por WhatsApp</a></div>
+  </div>
+</div></section>
+
+<section class="sec oscuro cierre"><div class="wrap">
+  <h2 class="doble" data-reveal><span>Tu momento de</span>consentirte es ahora</h2>
+  <div class="acciones"><a class="btn" href="#reservar">Reservar mi cita</a><a class="btn btn-linea" data-wa="Hola, quiero información sobre sus tratamientos">Escribir por WhatsApp</a></div>
+  
+  <div class="demo-links"><a href="mis-citas.html">Mis citas</a></div>
 </div></section>
 </main>
 
 <footer><div class="wrap">
   <img src="assets/logo.webp" alt="Belén Alvarez Centro Estético &amp; Spa" width="64" height="64" loading="lazy">
-  <div>Belén Alvarez Centro Estético &amp; Spa Quito · 0992561081</div>
+  <div>Belén Alvarez Centro Estético &amp; Spa Quito · James Colnet N40-64 y Alonso de Torres · 0992561081<br>
+  <a href="personal.html" rel="nofollow">Equipo</a> · <a id="ig2" target="_blank" rel="noopener">Instagram</a> · <a id="fb" target="_blank" rel="noopener">Facebook</a></div>
 </div></footer>
 
+<a class="wa-flot" data-wa="Hola, quiero reservar una cita" aria-label="Escribir a Belén Alvarez Centro Estético &amp; Spa por WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.2c-.2.6-1.3 1.2-1.8 1.3-.5 0-1 .2-3.3-.7-2.8-1.1-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.3.5-.4.4c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.2.1.7-.1 1.3z"/></svg></a>
+
+
 <script src="config.js"></script>
+<script src="menu.js"></script>
+<script>window.CITASDATA = {"mock": {"config": {"prefijo": "BA", "capacidad": 2, "paso_min": 30, "anticipacion_min": 60, "max_dias": 60, "max_citas_activas": 3, "sellos_meta": 5}, "horario": [{"dia": 1, "abre": "09:00", "cierra": "18:00"}, {"dia": 2, "abre": "09:00", "cierra": "18:00"}, {"dia": 3, "abre": "09:00", "cierra": "18:00"}, {"dia": 4, "abre": "09:00", "cierra": "18:00"}, {"dia": 5, "abre": "09:00", "cierra": "18:00"}, {"dia": 6, "abre": "09:00", "cierra": "14:00"}], "servicios": [{"nombre": "Limpieza facial", "categoria": "Rostro", "descripcion": "Limpieza profunda según tu tipo de piel.", "duracion_min": 60, "precio": null}, {"nombre": "Reducción de medidas", "categoria": "Cuerpo", "descripcion": "Tratamiento corporal por sesiones.", "duracion_min": 60, "precio": null}, {"nombre": "Tratamiento de fibrosis", "categoria": "Cuerpo", "descripcion": "Trabajo sobre la piel con fibrosis.", "duracion_min": 60, "precio": null}, {"nombre": "Masaje relajante", "categoria": "Cuerpo", "descripcion": "Para soltar tensión y descansar.", "duracion_min": 60, "precio": null}, {"nombre": "Depilación definitiva (sesión)", "categoria": "Piel suave", "descripcion": "Sesión por zona.", "duracion_min": 30, "precio": null}], "ejemplo": {"codigo": "BA-7K3Q9V", "ultimos4": "4567"}}, "textos": {"wa_cita": "Hola Belén, soy {nombre}. Acabo de pedir una cita desde la web: {servicio}, {dia} a las {hora}.", "wa_confirmar": "Hola {nombre} 🌿 Tu cita de {servicio} está confirmada para el {dia} a las {hora}. Tu código para ver o cancelar tus citas es {codigo}: {url}"}, "produccion": true};</script>
+<script src="modulos/citas/citas-mock.js"></script>
+<script src="modulos/citas/citas-api.js"></script>
+<script src="modulos/citas/citas-ui.js"></script>
+<script src="modulos/citas/citas-landing.js"></script>
+<script>
+const { esc, plata } = CU;
+const ITEMS = new Map(MENU.categorias.flatMap(c => c.items.map(i => [i.id, i])));
+const wa = (n, t) => `https://wa.me/${String(n).replace(/\D/g, '')}?text=${encodeURIComponent(t)}`;
+document.querySelectorAll('[data-wa]').forEach(a => { a.href = wa(DEMO.waCliente, a.dataset.wa); a.target = '_blank'; a.rel = 'noopener'; a.addEventListener('click', () => CITAS.evento('click_whatsapp', { origen: 'landing' })); });
+['ig', 'ig2'].forEach(i => document.getElementById(i).href = DEMO.instagram);
+{ const fb = document.getElementById('fb'); if (fb) fb.href = DEMO.facebook; }
+Reserva.iniciar('#reserva', { wa: DEMO.waCliente });
+
+/* Diagnóstico: recomienda solo productos reales de la carta. Preguntas y reglas vienen de cliente.json → diag */
+const DIAG = {"titulo": "Tu tratamiento ideal", "sub": "Tres preguntas, una sugerencia", "fino": "Encuentra:", "intro": "Cuéntanos qué quieres cuidar y te sugerimos por dónde empezar. En tu cita lo confirmamos contigo.", "hoy": "Te sugerimos empezar por", "preguntas": [{"clave": "zona", "texto": "¿Qué quieres cuidar?", "opciones": [{"valor": "rostro", "texto": "Mi rostro"}, {"valor": "cuerpo", "texto": "Mi cuerpo"}, {"valor": "vello", "texto": "Quitar el vello", "detalle": "Depilación"}, {"valor": "descanso", "texto": "Descansar y relajarme"}]}, {"clave": "foco", "texto": "Si es el cuerpo, ¿qué te interesa más?", "opciones": [{"valor": "medidas", "texto": "Reducir medidas"}, {"valor": "fibrosis", "texto": "Piel con fibrosis"}, {"valor": "otro", "texto": "Otra cosa / no aplica"}]}, {"clave": "primera", "texto": "¿Es tu primera visita?", "opciones": [{"valor": "si", "texto": "Sí, es mi primera vez"}, {"valor": "no", "texto": "Ya nos conozco"}]}], "reglas": [{"si": {"zona": "rostro"}, "id": "limpiezas"}, {"si": {"zona": "vello"}, "id": "depilacion"}, {"si": {"zona": "descanso"}, "id": "masajes"}, {"si": {"zona": "cuerpo", "foco": "medidas"}, "id": "medidas"}, {"si": {"zona": "cuerpo", "foco": "fibrosis"}, "id": "fibrosis"}, {"si": {"zona": "cuerpo"}, "id": "masajes"}], "defecto": "limpiezas", "compartir": {"clave": "primera", "valor": "si", "id": "limpiezas", "texto": "Si es tu primera visita, pregunta también por"}};
+const preguntas = DIAG.preguntas.map(q => ({ k: q.clave, t: q.texto, ops: q.opciones.map(o => [o.valor, o.texto, o.detalle || '']) }));
+function recomendar(r) {
+  for (const g of DIAG.reglas) if (Object.entries(g.si).every(([k, v]) => r[k] === v)) return g.id;
+  return DIAG.defecto;
+}
+const s = { paso: 0, r: {} }, caja = document.getElementById('caja-diag'), N = preguntas.length;
+const cab = `<div class="caja-cab"><img src="assets/logo.webp" alt="" width="42" height="42"><div><b>${esc(DIAG.titulo)}</b><small>${esc(DIAG.sub)}</small></div></div>`;
+function pintar() {
+  if (s.paso < N) {
+    const q = preguntas[s.paso];
+    caja.innerHTML = `${cab}<div class="prog"><span>Paso ${s.paso + 1} de ${N}</span><div class="pista"><div style="width:${s.paso / N * 100}%"></div></div></div>
+      <div class="fx-paso" style="display:flex;flex-direction:column;gap:14px"><h3>${esc(q.t)}</h3>
+      <div class="ops">${q.ops.map(([v, t, d]) => `<button type="button" class="op" data-v="${esc(v)}"><span>${esc(t)}${d ? `<small>${esc(d)}</small>` : ''}</span></button>`).join('')}</div>
+      ${s.paso ? '<button type="button" class="enlace" id="volver">Volver</button>' : ''}</div>`;
+    requestAnimationFrame(() => requestAnimationFrame(() => { caja.querySelector('.pista div').style.width = ((s.paso + 1) / N * 100) + '%'; }));
+    caja.querySelectorAll('.op').forEach(b => b.onclick = () => { s.r[q.k] = b.dataset.v; s.paso++; pintar(); });
+    const v = document.getElementById('volver'); if (v) v.onclick = () => { s.paso--; pintar(); };
+  } else {
+    const id = recomendar(s.r), it = ITEMS.get(id), sv = Reserva.buscar(it.nombre);
+    const comp = DIAG.compartir && s.r[DIAG.compartir.clave] === DIAG.compartir.valor ? ITEMS.get(DIAG.compartir.id) : null;
+    caja.innerHTML = `${cab}<div class="fx-paso" style="display:flex;flex-direction:column;gap:14px">
+      <div class="reco"><small>${esc(DIAG.hoy)}</small><b>${esc(it.nombre)}</b>${it.lema ? `<p><strong>${esc(it.lema)}.</strong></p>` : ''}
+        <p>${esc((sv && sv.descripcion) || (it.desc && !/^\[/.test(it.desc) ? it.desc : ''))}</p><div class="precio">${sv ? `${sv.duracion_min} min · ${esc(plata(sv.precio))}` : ''}</div></div>
+      ${comp ? `<p>${esc(DIAG.compartir.texto)} <strong>${esc(comp.nombre)}</strong>.</p>` : ''}
+      <button type="button" class="btn" id="add-reco">Reservar este tratamiento</button>
+      <div style="display:flex;gap:18px;flex-wrap:wrap"><a class="enlace" href="#reservar">Ver todos los tratamientos</a><button type="button" class="enlace" id="otra">Probar otra vez</button></div></div>`;
+    document.getElementById('add-reco').onclick = () => { if (!Reserva.elegirPorNombre(it.nombre)) document.getElementById('reservar').scrollIntoView({ behavior: 'smooth' }); };
+    document.getElementById('otra').onclick = () => { s.paso = 0; s.r = {}; pintar(); };
+  }
+}
+pintar();
+</script>
 <script src="fx.js"></script>
-<script src="demo.js"></script>
+
 </body>
 </html>
